@@ -8,8 +8,8 @@ var buildFolder = './Build/',
     jshint = require("gulp-jshint"),
     babel = require('gulp-babel'),
     coffeelint = require("gulp-coffeelint"),
-    minifyCss = require("gulp-minify-css"),
-    minifyHtml = require("gulp-minify-html"),
+    minifyCss = require("gulp-clean-css"),
+    minifyHtml = require("gulp-htmlmin"),
     less = require("gulp-less"),
     uglify = require("gulp-uglify");
 
