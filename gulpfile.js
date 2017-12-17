@@ -10,7 +10,6 @@ var buildFolder = './Build/',
     coffeelint = require("gulp-coffeelint"),
     minifyCss = require("gulp-minify-css"),
     minifyHtml = require("gulp-minify-html"),
-    sass = require("gulp-sass"),
     less = require("gulp-less"),
     uglify = require("gulp-uglify");
 
@@ -30,7 +29,7 @@ var getCopyrightVersion = function () {
 };
 
 // Run All tasks one by one
-gulp.task('default', ['compile-coffee', 'compile-less', 'compile-sass', 'minify-css', 'minify-html', 'minify-js', 'concat', 'concat-copyright', 'concat-copyright-version', 'jsLint', 'coffeeLint', 'bundle-one', 'rename']);
+gulp.task('default', ['compile-coffee', 'compile-less', 'minify-css', 'minify-html', 'minify-js', 'concat', 'concat-copyright', 'concat-copyright-version', 'jsLint', 'coffeeLint', 'bundle-one', 'rename']);
 
 // Compile ECMAScript 6
 gulp.task('compile-es6', function () {
@@ -51,13 +50,6 @@ gulp.task('compile-less', function () {
     gulp.src('./Less/one.less')
         .pipe(less())
         .pipe(gulp.dest(buildFolder + 'compile-less'));
-});
-
-// Compile Sass
-gulp.task('compile-sass', function () {
-    gulp.src('./Sass/one.sass')
-        .pipe(sass())
-        .pipe(gulp.dest(buildFolder + 'compile-sass'));
 });
 
 // Minify Css

@@ -1,4 +1,3 @@
-gulp_examples
-=============
+Gulp examples
 
-gulp practical examples
+Gulp practical examples
