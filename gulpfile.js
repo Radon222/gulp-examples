@@ -11,7 +11,8 @@ var buildFolder = './Build/',
     minifyCss = require("gulp-clean-css"),
     minifyHtml = require("gulp-htmlmin"),
     less = require("gulp-less"),
-    uglify = require("gulp-uglify");
+    uglify = require("gulp-uglify"),
+    ts = require('gulp-typescript');
 
 // Get version using NodeJs file system
 var getVersion = function () {
@@ -29,7 +30,7 @@ var getCopyrightVersion = function () {
 };
 
 // Run All tasks one by one
-gulp.task('default', ['compile-coffee', 'compile-less', 'minify-css', 'minify-html', 'minify-js', 'concat', 'concat-copyright', 'concat-copyright-version', 'jsLint', 'coffeeLint', 'bundle-one', 'rename']);
+gulp.task('default', ['compile-coffee', "compile-typescript", 'compile-less', 'minify-css', 'minify-html', 'minify-js', 'concat', 'concat-copyright', 'concat-copyright-version', 'jsLint', 'coffeeLint', 'bundle-one', 'rename']);
 
 // Compile ECMAScript 6
 gulp.task('compile-es6', function () {
@@ -43,6 +44,16 @@ gulp.task('compile-coffee', function () {
     gulp.src('./CoffeeScript/one.coffee')
         .pipe(coffee())
         .pipe(gulp.dest(buildFolder + 'compile-coffee'));
+});
+
+// Compile typescript, see reference
+/* https://www.npmjs.com/package/gulp-typescript */
+gulp.task('compile-typescript', function () {
+    var tsProject = ts.createProject('tsconfig.json');
+    var tsResult = tsProject.src()
+        .pipe(tsProject());
+ 
+    return tsResult.js.pipe(gulp.dest('Build/TypeScript-build'));
 });
 
 // Compile Less
